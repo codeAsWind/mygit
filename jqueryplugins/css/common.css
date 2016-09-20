@@ -8,16 +8,16 @@ ul,li {
 }
 
 
-#tabWp {
-    width: 800px;
-    margin: 0 auto;
+.tab {
+    margin: 200px 200px;
 }
 
-#tabWp ul{
+.tab ul{
+    width
     margin: 50px 0;
 }
 
-#tabWp ul li {
+.tab ul li {
     border: 1px solid red;
     width: 100px;
     height: 50px;
@@ -32,13 +32,13 @@ ul,li {
     clear: both;
 }
 
-#tabWp>div {
-    width: 567px;
+.tab>div {
+    width: 100%;
     overflow: hidden;
     height: 350px;
 }
 
-#tabWp div>div {
+.tab div>div {
     border: 1px solid red;
     height: 348px;
     line-height: 348px;
