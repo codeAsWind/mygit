@@ -13,10 +13,10 @@
     }
 </style>
 <div class="wrapper">
-    <div class="touch" data-AppTouchHight="true">touch me</div> <!-- this element will trigger feedback -->
+    <div class="touch" data-appTouchHight="true">touch me</div> <!-- this element will trigger feedback -->
 </div>
 
 <script>
     // new AppTouchHight('body'); global listener
-    new AppTouchHight('.wrapper'); // only listen this element and this element's children
+    new appTouchHight('.wrapper'); // only listen this element and this element's children
 </script>
