@@ -1,7 +1,8 @@
+/*!appTouchHight - https://github.com/codeAsWind/mygit/blob/master/appTouchHeight.js/*/
 !(function () {
-    var eventBind = function (_this) {
-        var eventData = {}, container = _this._container, vague = 5,
-            bindProp = _this._bindProp, feedbackClass = _this._feedbackClass;
+    var bindEvent = function (_that) {
+        var eventData = {}, container = _that._container, vague = 5,
+            bindProp = _that._bindProp, feedbackClass = _that._feedbackClass;
 
         var classUtil = {
             hasClass: function (elem, cls){
@@ -34,7 +35,7 @@
             }
         };
 
-        _this.startFunc = function (e) {
+        _that.startFunc = function (e) {
             var event = e.changedTouches ? e.changedTouches[0] : e,
                 identifier = eventData[event.identifier] = {};
             identifier.startY = event.pageY;
@@ -45,9 +46,9 @@
             }
         };
 
-        container.addEventListener('touchstart', _this.startFunc);
+        container.addEventListener('touchstart', _that.startFunc);
 
-        _this.moveFunc = function (e) {
+        _that.moveFunc = function (e) {
             var event = e.changedTouches ? e.changedTouches[0] : e,
                 identifier = eventData[event.identifier];
             if (event.target && Math.abs(identifier.startY - event.pageY) > vague) {
@@ -55,9 +56,9 @@
             }
         };
 
-        container.addEventListener('touchmove', _this.moveFunc);
+        container.addEventListener('touchmove', _that.moveFunc);
 
-        _this.cancelFunc = function (e) {
+        _that.cancelFunc = function (e) {
             var event = e.changedTouches ? e.changedTouches[0] : e,
                 identifier = eventData[event.identifier];
             if (identifier.target) {
@@ -66,34 +67,34 @@
             delete eventData[event.identifier];
         };
 
-        container.addEventListener('touchcancel', _this.cancelFunc);
+        container.addEventListener('touchcancel', _that.cancelFunc);
 
-        container.addEventListener('touchend', _this.cancelFunc);
+        container.addEventListener('touchend', _that.cancelFunc);
     };
 
-    var AppTouchHight = function (selector, option) {
+    var appTouchHight = function (selector, option) {
         this._container = document.querySelector(selector);
         option = option || {};
-        this._bindProp = option.bindProp || 'data-AppTouchHight';
+        this._bindProp = option.bindProp || 'data-appTouchHight';
         this._feedbackClass = option.feedbackClass || 'feedback';
-        eventBind(this);
+        bindEvent(this);
     };
 
-    AppTouchHight.prototype.destory = function () {
-        var _this = this;
-        _this._container.removeEventListener('touchstart', _this.startFunc);
-        _this._container.removeEventListener('touchmove', _this.moveFunc);
-        _this._container.removeEventListener('touchcancel', _this.cancelFunc);
-        _this._container.removeEventListener('touchend', _this.cancelFunc);
+    appTouchHight.prototype.destory = function () {
+        var _that = this;
+        _that._container.removeEventListener('touchstart', _that.startFunc);
+        _that._container.removeEventListener('touchmove', _that.moveFunc);
+        _that._container.removeEventListener('touchcancel', _that.cancelFunc);
+        _that._container.removeEventListener('touchend', _that.cancelFunc);
     };
 
     if (typeof define === 'function') {
         define(function() {
-            return AppTouchHight;
+            return appTouchHight;
         });
     } else if (typeof exports !== 'undefined') {
-        module.exports = AppTouchHight;
+        module.exports = appTouchHight;
     } else {
-        this.AppTouchHight = AppTouchHight;
+        this.appTouchHight = appTouchHight;
     }
 }());
